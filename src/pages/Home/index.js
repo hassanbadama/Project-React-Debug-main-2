@@ -14,12 +14,11 @@ import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
   const {data} = useData()
-  const objet = {}
+  let objet  = {}
   if (data?.events?.length>0) {
-    objet = data?.events[data?.events?.length-1]
+    objet = data.events[data.events.length-1]
     
   }
-  
   return <>
     <header>
       <Menu />
@@ -28,7 +27,7 @@ const Page = () => {
       <section className="SliderContainer">
         <Slider />
       </section>
-      <section id="nos-services" className="ServicesContainer">
+      <section className="ServicesContainer">
         <h2 className="Title">Nos services</h2>
         <p>Nous organisons des événements sur mesure partout dans le monde</p>
         <div className="ListContainer">
@@ -57,11 +56,11 @@ const Page = () => {
           </ServiceCard>
         </div>
       </section>
-      <section id="nos-realisations" className="EventsContainer">
+      <section className="EventsContainer">
         <h2 className="Title">Nos réalisations</h2>
         <EventList />
       </section>
-      <section id="notre-equipe" className="PeoplesContainer">
+      <section className="PeoplesContainer">
         <h2 className="Title">Notre équipe</h2>
         <p>Une équipe d’experts dédiés à l’ogranisation de vos événements</p>
         <div className="ListContainer">
@@ -123,15 +122,14 @@ const Page = () => {
       <div className="col presta">
         <h3>Notre derniére prestation</h3>
         {
-          objet?.id &&  <EventCard
-          imageSrc={data?.events[data?.events?.length-1].cover}
-          title={data?.events[data?.events?.length-1].title}
-          date={new Date(data?.events[data?.events?.length-1].date)}
+          objet?.id && <EventCard
+          imageSrc={objet?.cover}
+          title={objet?.title}
+          date={new Date(objet?.date)}
           small
           label="boom"
         />
         }
-       
       </div>
       <div className="col contact">
         <h3>Contactez-nous</h3>
